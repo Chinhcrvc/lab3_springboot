@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bài 1</title>
+  </head>
+  <body>
+    <div>
+      <!-- <label>Image: </label> -->
+      <img th:src="@{|/photos/${staff.photo}|}" />
+      <br /><br />
+
+      <label>Email: </label>
+      <b th:text="${staff.id}"></b>
+      <br /><br />
+
+      <label>Họ và tên: </label>
+      <b th:text="${#strings.capitalizeWords(staff.fullname)}"></b>
+      <br /><br />
+
+      <label>Giới tính: </label>
+      <b th:text="${staff.gender ? 'Nam' : 'Nữ'}"></b>
+      <br /><br />
+
+      <label>Ngày sinh: </label>
+      <b th:text="${#dates.format(staff.birthday,'dd-MM-yyyy')}"></b>
+      <br /><br />
+
+      <label>Cấp bậc: </label>
+      <th:block th:switch="${staff.level}">
+        <b th:case="0">Uý</b>
+        <b th:case="1">Tá</b>
+        <b th:case="2">Tướng</b>
+        <b th:case="*">Chưa có</b>
+      </th:block>
+      <br /><br />
+
+      <label>Salary: </label>
+      $<b
+        th:text="${#numbers.formatDecimal(staff.salary,0,'COMMA',2,'POINT')}"
+      ></b>
+      <br /><br />
+    </div>
+  </body>
+</html>
